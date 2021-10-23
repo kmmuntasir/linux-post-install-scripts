@@ -10,7 +10,7 @@ sudo apt install software-properties-gtk
 3. ...
 
 ## How to Run
-use `sudo -u <user-name> ./<script-file-name>` to run the installer for specific user
+use `sudo -u <user-name> ./<script-file-name>` to run the installer for specific user.  
 Example:
 ```shell
 sudo -u brian ./install.sh
