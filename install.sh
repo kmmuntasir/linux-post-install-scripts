@@ -43,6 +43,7 @@ ln -s "$HOME/coder/system/Downloads" "Downloads"
 ln -s "$HOME/storage/music" "Music"
 ln -s "$HOME/storage/movies" "Videos"
 ln -s "$HOME/coder/apps/win_apps/others/Wallpaper" "Pictures"
+ln -s "$HOME/speedo/localhost" "localhost"
 
 echo "=================================================="
 echo "               Moving backup files"
@@ -76,6 +77,8 @@ echo "=================================================="
 echo "            Installing Apps from Repo"
 echo "=================================================="
 
+sudo apt install snap snapd -y
+
 sudo apt install audacious -y
 sudo apt install audacity -y
 sudo apt install blueman -y
@@ -86,11 +89,13 @@ sudo apt install codeblocks -y
 sudo apt install baobab -y
 sudo apt install elementary-tweaks -y
 sudo apt install fceux -y
+sudo snap install figma-linux
 sudo apt install filezilla -y
 sudo apt install firefox -y
 sudo apt install gedit -y
 sudo apt install gnome-clocks -y
 sudo apt install gnome-disk-utility -y
+sudo apt install gnome-mpv -y
 sudo apt install gnome-system-monitor -y
 sudo apt install gimp -y
 sudo apt install git -y
@@ -104,7 +109,6 @@ sudo apt install kate -y
 sudo apt install kodi -y
 sudo apt install libreoffice -y
 sudo apt install mpv -y
-sudo apt install mupdf -y
 sudo apt install nautilus -y
 sudo apt install obs-studio -y
 sudo apt install psensor -y
@@ -115,14 +119,16 @@ sudo apt install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils -y
 sudo apt install qpdfview -y
 sudo apt install selene -y
 sudo apt install skanlite -y
+sudo snap install skype
+sudo snap install slack --classic
 sudo apt install smplayer -y
-sudo apt install snap snapd -y
 sudo apt install stoken -y
 sudo apt install sublime-text -y
 sudo apt install synapse -y
 sudo apt install synaptic -y
 sudo apt install ubuntu-restricted-extras -y
 sudo apt install vlc -y
+sudo snap install whatsdesk
 sudo apt install wine-stable -y
 sudo apt install xed -y
 
