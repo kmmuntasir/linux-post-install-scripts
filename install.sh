@@ -3,6 +3,7 @@
 # =====================================================================
 # Elementary system setup script for Munna
 # =====================================================================
+# sudo apt-get install software-properties-gtk
 # sudo -u munna ./test.sh
 #
 USER_NAME=$USER
@@ -222,6 +223,7 @@ sudo apt install -f -y
 sudo apt upgrade -y
 sudo apt dist-upgrade -y
 sudo apt autoremove -y
+sudo apt autoclean -y
 sudo update-grub
 
 echo "=================================================="
