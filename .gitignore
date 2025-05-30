@@ -21,3 +21,9 @@
 .classpath
 .project
 .settings/
+
+# Configuration files
+config.sh
+
+# Backup files
+*.backup*

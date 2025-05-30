@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# User Configuration
+export INSTALL_USER="your_username"
+
+# Default mount options
+# Format: comma-separated list of mount options
+# Example: "defaults,noatime,nodiratime"
+# Common options:
+#   - auto: mount during boot
+#   - noauto: don't mount during boot
+#   - user: allow regular users to mount
+#   - nosuid: ignore suid and sgid bits
+#   - nodev: ignore device special files
+#   - nofail: don't report errors if device is not present
+#   - x-gvfs-show: show in file manager
+export MOUNT_OPTIONS="auto,nosuid,nodev,nofail,x-gvfs-show"
+
+# Drive Mount Configuration
+# Format: ["mount_path"]="uuid"
+# To find UUID of your drives, use: lsblk -f
+# Example:
+#   ["$HOME/data"]="12345678-1234-1234-1234-123456789abc"    # data drive
+declare -A MOUNT_DISKS=(
+    ["$HOME/work"]="your-uuid-here"      # work drive
+    ["$HOME/storage"]="your-uuid-here"    # storage drive
+) 
