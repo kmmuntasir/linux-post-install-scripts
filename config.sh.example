@@ -30,4 +30,15 @@ declare -A MOUNT_DISKS=(
 declare -A SYMLINK_PATHS=(
     ["$HOME/original/path1"]="$HOME/target/path1"    # description of first symlink
     ["$HOME/original/path2"]="$HOME/target/path2"    # description of second symlink
+)
+
+# Directory Copy Configuration
+# Format: ["source_path"]="target_path"
+# Note: Paths can use $HOME or other environment variables, or start with ./
+# The contents of source_path will be copied to target_path
+declare -A COPY_PATHS=(
+    ["./sources/fonts"]="$HOME/.fonts"              # user fonts
+    ["./sources/icons"]="$HOME/.icons"              # user icons
+    ["./sources/launchers"]="$HOME/.local/share/applications"  # application launchers
+    ["./sources/home"]="$HOME"                      # home directory files
 ) 

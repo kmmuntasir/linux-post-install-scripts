@@ -6,6 +6,7 @@ A collection of shell scripts to automate post-installation tasks on Ubuntu/Linu
 
 - **Automatic Drive Mounting**: Configure and mount drives using UUIDs
 - **Directory Structure**: Create and manage custom directory layouts
+- **Directory Copying**: Copy directory structures with validation and safety checks
 - **Safe Operations**: 
   - Dry-run support to preview changes
   - Automatic backup of system files
@@ -59,6 +60,14 @@ Edit `config.sh` to configure:
    )
    ```
 
+4. Directory copy configuration:
+   ```bash
+   declare -A COPY_PATHS=(
+       ["./sources/fonts"]="$HOME/.fonts"              # user fonts
+       ["./sources/icons"]="$HOME/.icons"              # user icons
+   )
+   ```
+
 To find your drive UUIDs, use:
 ```bash
 lsblk -f
@@ -78,12 +87,25 @@ lsblk -f
    sudo ./scripts/automount.sh mount
    ```
 
+### Copy Directories
+
+Copy configured directories to their target locations:
+```bash
+./scripts/copy_dirs.sh
+```
+
+With dry-run to preview changes:
+```bash
+./scripts/copy_dirs.sh --dry-run
+```
+
 ### Dry Run
 
 To preview changes without applying them:
 ```bash
 ./scripts/automount.sh --dry-run create
 sudo ./scripts/automount.sh --dry-run mount
+./scripts/copy_dirs.sh --dry-run
 ```
 
 ## Mount Options
@@ -107,6 +129,10 @@ For more options, see `man mount`.
 - Checks for root privileges when needed
 - Validates configuration before proceeding
 - Provides dry-run option for testing
+- Protects critical system directories
+- Verifies filesystem write permissions
+- Validates source and target paths
+- Provides detailed operation summaries
 
 ## Contributing
 
