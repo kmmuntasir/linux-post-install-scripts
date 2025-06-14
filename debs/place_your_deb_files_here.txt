@@ -1,0 +1,12 @@
+# DEB Files Directory
+
+Place your local .deb files in this directory for installation.
+
+The install_apps.sh script will automatically detect and install any .deb files found here.
+
+Examples of files you might place here:
+- google-chrome-stable_current_amd64.deb
+- discord-0.0.xx.deb
+- custom-application.deb
+
+Note: This placeholder file will be ignored by git, but the actual .deb files you place here will also be ignored to avoid committing large binary files to the repository. 

@@ -1,0 +1,17 @@
+# Sources Directory
+
+Place your source files and folders in this directory for copying to the system.
+
+The copy_dirs.sh script will copy configured directories from here to their target locations.
+
+Examples of directories/files you might place here:
+- fonts/ (custom fonts to be copied to ~/.fonts)
+- icons/ (custom icons to be copied to ~/.icons)  
+- launchers/ (custom .desktop files to be copied to ~/.local/share/applications)
+- home/ (files to be copied to home directory)
+- themes/ (custom themes)
+- wallpapers/ (custom wallpapers)
+
+Configure the copy operations in config.sh using the COPY_PATHS array.
+
+Note: This placeholder file will be ignored by git, but the actual files/folders you place here will also be ignored to avoid committing personal files to the repository.

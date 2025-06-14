@@ -27,3 +27,11 @@ config.sh
 
 # Backup files
 *.backup*
+
+# Sources directory - ignore everything except placeholder
+sources/*
+!sources/place_your_source_files_or_folders_here.txt
+
+# Debs directory - ignore everything except placeholder  
+debs/*
+!debs/place_your_deb_files_here.txt
