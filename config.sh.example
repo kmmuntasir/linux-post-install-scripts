@@ -49,8 +49,8 @@ declare -A COPY_PATHS=(
 # Format: Array of PPA URLs
 # Example: ppa:user/repository-name
 declare -a PPA_REPOSITORIES=(
-    "ppa:touchegg/stable"        # Touchegg for touchpad gestures
-    "ppa:flatpak/stable"         # Flatpak
+    "ppa:example/repository"        # Example PPA repository
+    "ppa:another/example"           # Another example PPA
 )
 
 # GPG Key Repositories
@@ -59,9 +59,8 @@ declare -a PPA_REPOSITORIES=(
 #       key_path is where to store the key (usually in /etc/apt/keyrings/)
 #       source_entry is the repository source list entry
 declare -A GPG_REPOSITORIES=(
-    ["sublime-text"]="https://download.sublimetext.com/sublimehq-pub.gpg|/etc/apt/keyrings/sublime-text.gpg|deb https://download.sublimetext.com/ apt/stable/"
-    ["brave-browser"]="https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg|/etc/apt/keyrings/brave-browser-archive-keyring.gpg|deb [signed-by=/etc/apt/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"
-    ["docker"]="https://download.docker.com/linux/ubuntu/gpg|/etc/apt/keyrings/docker.asc|deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable"
+    ["example-repo"]="https://example.com/key.gpg|/etc/apt/keyrings/example.gpg|deb https://example.com/repo stable main"
+    ["another-repo"]="https://another.com/key.asc|/etc/apt/keyrings/another.asc|deb [signed-by=/etc/apt/keyrings/another.asc] https://another.com/repo stable main"
 )
 
 # Packages to remove before adding certain repositories (e.g., for Docker)
@@ -73,4 +72,152 @@ declare -a CONFLICTING_PACKAGES=(
     "podman-docker"
     "containerd"
     "runc"
-) 
+)
+
+# Application Installation Configuration
+
+# Packages to remove (unwanted default applications)
+declare -a REMOVE_PACKAGES=(
+    "thunderbird"
+    "thunderbird*"
+    "transmission-*"
+)
+
+# Snap packages to remove
+declare -a REMOVE_SNAPS=(
+    "thunderbird"
+    "transmission"
+)
+
+# APT packages to install
+declare -a APT_PACKAGES=(
+    "curl"
+    "git"
+    "htop"
+    "vim"
+    "example-package1"
+    "example-package2"
+    # Add your packages here
+)
+
+# Flatpak applications to install
+declare -a FLATPAK_PACKAGES=(
+    "org.example.Application"
+    "com.example.AnotherApp"
+    # Add your Flatpak apps here
+)
+
+# Python packages to install via pipx
+declare -a PIPX_PACKAGES=(
+    "example-python-package"
+    # Add your pipx packages here
+)
+
+# DEB files directory (relative to script location)
+export DEB_FILES_DIR="./debs"
+
+# Enable/disable specific installation steps
+export INSTALL_FLATPAK_APPS=true
+export INSTALL_PIPX_PACKAGES=true
+export INSTALL_DEB_FILES=false
+export REMOVE_UNWANTED_APPS=true
+export SETUP_FLATPAK_REPO=true
+
+# Miscellaneous Settings Configuration
+
+# GRUB Configuration
+export GRUB_TIMEOUT=5                    # GRUB timeout in seconds
+export UPDATE_GRUB_TIMEOUT=true          # Enable/disable GRUB timeout update
+
+# Lid Switch Configuration
+export LID_SWITCH_ACTION="suspend"       # Action when lid is closed: lock, suspend, ignore, poweroff
+export LID_SWITCH_EXTERNAL_POWER_ACTION="lock"  # Action when on external power
+export CONFIGURE_LID_SWITCH=true         # Enable/disable lid switch configuration
+
+# File Copy Configuration
+export COPY_UPDATE_SCRIPT=true           # Copy update.sh to home directory
+export UPDATE_SCRIPT_SOURCE="./scripts/update.sh"  # Source path for update script
+
+# GNOME Extensions Configuration
+declare -a GNOME_EXTENSIONS=(
+    "1234"  # Example Extension 1
+    "5678"  # Example Extension 2
+)
+export INSTALL_GNOME_EXTENSIONS=true     # Enable/disable GNOME extensions installation
+
+# SSH Configuration
+declare -a SSH_KEYS=(
+    "$HOME/.ssh/id_rsa"
+    "$HOME/.ssh/id_ed25519"
+)
+export CONFIGURE_SSH=true                # Enable/disable SSH configuration
+export SSH_PERMISSIONS_SCRIPT="./scripts/ssh_permission.sh"  # Path to SSH permissions script
+
+# NVM Configuration
+export NVM_VERSION="v0.39.7"            # NVM version to install
+export INSTALL_NVM=true                 # Enable/disable NVM installation
+export INSTALL_NODE_LTS=true            # Install latest LTS Node.js version
+
+# Enable/disable specific misc operations
+export ENABLE_SYSTEM_MISC=true          # Enable system-level misc operations
+export ENABLE_USER_MISC=true            # Enable user-level misc operations
+
+# System Update Configuration
+
+# Enable/disable specific update operations
+export UPDATE_APT_PACKAGES=true         # Update APT packages
+export UPDATE_SNAP_PACKAGES=true        # Update Snap packages
+export UPDATE_FLATPAK_PACKAGES=true     # Update Flatpak packages
+export UPDATE_GRUB_CONFIG=true          # Update GRUB configuration
+export CONFIGURE_BROKEN_PACKAGES=true   # Fix broken packages
+export CLEAN_PACKAGE_CACHE=true         # Clean package cache and remove unused packages
+
+# APT Update Operations (in order of execution)
+export APT_UPDATE=true                  # Run apt update
+export APT_CONFIGURE_PENDING=true       # Configure pending packages (dpkg --configure -a)
+export APT_FIX_BROKEN=true             # Fix broken dependencies (apt install -f)
+export APT_UPGRADE=true                 # Upgrade packages (apt upgrade)
+export APT_DIST_UPGRADE=false           # Distribution upgrade (apt dist-upgrade) - disabled by default
+export APT_AUTOREMOVE=true             # Remove unused packages (apt autoremove)
+export APT_AUTOCLEAN=true              # Clean package cache (apt autoclean)
+
+# Update behavior settings
+export UPDATE_ASSUME_YES=true           # Use -y flag for non-interactive updates
+export UPDATE_VERBOSE=false             # Enable verbose output for updates
+export SKIP_UPDATE_ON_ERROR=false       # Continue with other updates if one fails
+
+# Post-Restart Operations Configuration
+
+# Docker Configuration
+export CONFIGURE_DOCKER_GROUP=true      # Add user to docker group
+export DOCKER_GROUP_NAME="docker"       # Name of the docker group
+
+# User Groups Configuration
+# Format: Array of group names to add the user to
+declare -a USER_GROUPS=(
+    "docker"
+    "sudo"
+    # Add other groups as needed
+)
+export ADD_USER_TO_GROUPS=true          # Enable adding user to specified groups
+
+# Service Management
+declare -a SERVICES_TO_ENABLE=(
+    "example-service"                    # Example service to enable
+    # Add services to enable at boot
+)
+export ENABLE_SERVICES=false            # Enable/disable service management
+
+declare -a SERVICES_TO_START=(
+    "example-service"                    # Example service to start
+    # Add services to start immediately
+)
+export START_SERVICES=false             # Enable/disable starting services
+
+# System Information Display
+export SHOW_SYSTEM_INFO=true            # Display system information after restart operations
+export SHOW_GROUP_MEMBERSHIP=true       # Show user's group membership
+export SHOW_SERVICE_STATUS=false        # Show status of configured services
+
+# Enable/disable specific post-restart operations
+export ENABLE_POST_RESTART=true         # Enable post-restart operations 

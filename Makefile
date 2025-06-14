@@ -1,4 +1,5 @@
-INSTALL_USER := munna
+# Get INSTALL_USER from config.sh
+INSTALL_USER := $(shell grep '^export INSTALL_USER=' config.sh | cut -d'"' -f2 | head -1)
 
 # Declare all phony targets
 .PHONY: info all prepare automount symlinks copy_dirs repos apps misc post_restart update
